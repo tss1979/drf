@@ -17,6 +17,7 @@ class User(AbstractUser):
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
 
+
 class Payment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='пользователь', related_name="payments")
     payment_date = models.DateTimeField(verbose_name='дата оплаты')
