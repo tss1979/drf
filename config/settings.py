@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'django_filters',
     'rest_framework_simplejwt',
     'users',
-    'school'
+    'school',
+    'subscription'
 ]
 
 MIDDLEWARE = [
