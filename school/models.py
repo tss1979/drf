@@ -10,6 +10,7 @@ class Course(models.Model):
     description = models.TextField(verbose_name='описание', **NULLABLE)
     preview = models.ImageField(verbose_name='превью', **NULLABLE)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='создатель', **NULLABLE)
+    price = models.ImageField(verbose_name='цена', **NULLABLE)
 
     class Meta:
         verbose_name = 'курс'
@@ -27,11 +28,9 @@ class Lesson(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name='курс', related_name='lessons')
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='создатель', **NULLABLE)
 
-
     class Meta:
         verbose_name = 'урок'
         verbose_name_plural = 'уроки'
 
     def __str__(self):
         return self.title
-

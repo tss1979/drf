@@ -17,6 +17,7 @@ class UserSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
 
+
 class UserViewSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -27,4 +28,3 @@ class PaymentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Payment
         fields = '__all__'
-

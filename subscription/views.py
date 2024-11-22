@@ -8,8 +8,6 @@ from subscription.models import Subscription
 from subscription.serializers import SubscriptionSerializer
 
 
-
-
 class SubscriptionCreateAPIView(generics.CreateAPIView):
     serializer_class = SubscriptionSerializer
     permission_classes = [IsAuthenticated]

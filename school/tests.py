@@ -1,5 +1,3 @@
-import json
-
 from rest_framework.test import APITestCase
 from rest_framework import status
 from django.urls import reverse
@@ -49,8 +47,14 @@ class LessonTestCase(APITestCase):
         """Тестирование получение всех уроков"""
         url = reverse("school:lesson-list")
         response = self.client.get(url)
-        result =  [
-            {'id': self.lesson.pk, 'title': self.lesson.title, 'description': None, 'preview': None, 'video_link': self.lesson.video_link, 'course': self.lesson.course.pk, 'owner': None}
+        result = [
+            {
+             'id': self.lesson.pk,
+             'title': self.lesson.title,
+             'description': None, 'preview': None,
+             'video_link': self.lesson.video_link,
+             'course': self.lesson.course.pk, 'owner': None
+            }
         ]
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.json().get("count"), 1)
@@ -88,5 +92,3 @@ class CourseTestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(Course.objects.all().count(), 1)
         self.assertEqual(response.json().get("subscription"), "Subscribed")
-
-
