@@ -16,7 +16,6 @@ class CourseSerializer(serializers.ModelSerializer):
     lessons = LessonSerializer(many=True, read_only=True)
     subscription = serializers.SerializerMethodField()
 
-
     class Meta:
         model = Course
         fields = '__all__'

@@ -3,6 +3,7 @@ from rest_framework.permissions import IsAuthenticated
 
 from school.paginators import SchoolPaginator
 from school.permissions import IsOwnerPermission
+from school.tasks import send_course_notification
 from users.permissions import UserIsModeratorPermission, UserIsStaffPermission
 
 from school.models import Course, Lesson
@@ -33,6 +34,13 @@ class CourseViewSet(viewsets.ModelViewSet):
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         return super().create(*args, **kwargs)
+
+    def update(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        instance = self.get_object()
+        send_course_notification.delay(instance.pk)
+        return super().update(request, *args, **kwargs)
 
 
 class LessonCreateAPIView(generics.CreateAPIView):

@@ -1,4 +1,4 @@
-
+import requests
 import stripe
 from config.settings import STRIPE_API_KEY
 
@@ -26,3 +26,12 @@ class StripeManager:
         return stripe.Product.create(
             name=course.title,
         )
+
+
+def send_telegram_message(chat_id, message):
+    params = {
+        "text": message,
+        "chat_id": chat_id
+    }
+    response = requests.get()
+
